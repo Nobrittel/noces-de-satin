@@ -1,0 +1,254 @@
+:root {
+  --ivoire: #faf6ef;
+  --champagne: #efe3cc;
+  --bordeaux: #6b1e2e;
+  --or: #b8925a;
+  --texte: #3a2a2e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  background: var(--ivoire);
+  color: var(--texte);
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Fade-in */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.fade.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Accueil */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background:
+    linear-gradient(rgba(59, 15, 25, 0.65), rgba(59, 15, 25, 0.8)),
+    url('images/PHOTO1.jpg') center / cover no-repeat;
+  color: var(--champagne);
+}
+
+.hero h1,
+.hero .names,
+.hero .date {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.names { font-size: 1.15rem; }
+.date { margin-top: 0.5rem; font-size: 0.95rem; opacity: 0.85; }
+
+/* Sections */
+section {
+  padding: 4rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--bordeaux);
+  margin-bottom: 2.5rem;
+}
+
+/* Frise chronologique */
+.timeline {
+  list-style: none;
+  border-left: 2px solid var(--or);
+  margin-left: 1rem;
+  padding-left: 2rem;
+  max-width: 600px;
+  margin-inline: auto;
+}
+.timeline li {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -2.45rem;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  background: var(--or);
+  border-radius: 50%;
+}
+.timeline span {
+  display: block;
+  font-weight: 400;
+  color: var(--or);
+  letter-spacing: 0.05em;
+}
+.timeline p { font-size: 1.05rem; }
+
+/* Galerie */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.gallery img:hover { transform: scale(1.03); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 5, 10, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+.lightbox .close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--champagne);
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+/* Messages */
+.messages {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.card {
+  background: #fff;
+  border-top: 3px solid var(--or);
+  border-radius: 10px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 18px rgba(107, 30, 46, 0.08);
+}
+.card h3 {
+  color: var(--bordeaux);
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+.card p { font-size: 0.97rem; }
+
+/* Pied de page */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--champagne);
+  color: var(--bordeaux);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+}
+footer .small {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--texte);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .timeline { padding-left: 1.5rem; }
+  .timeline li::before { left: -1.9rem; }
+}
+/* Histoire : photo à côté de la frise */
+.histoire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.histoire-photo {
+  margin: 0;
+  background: #fff;
+  padding: 0.6rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(107, 30, 46, 0.15);
+}
+
+.histoire-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.histoire-grid .timeline {
+  max-width: none;
+  margin: 0;
+}
+
+/* Sur téléphone, la photo passe au-dessus de la frise */
+@media (max-width: 800px) {
+  .histoire-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .histoire-photo {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+/* Agrandissement de l'en-tête */
+.hero {
+  min-height: 100vh;
+}
+
+.hero .kicker {
+  font-size: 1.1rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1.1;
+}
+
+.hero .names {
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+}
+
+.hero .date {
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+}
